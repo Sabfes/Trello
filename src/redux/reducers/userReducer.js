@@ -1,5 +1,5 @@
 const initialState = {
-    name: '',
+    isAuth: false,
 }
 
 export const userReducer = (state = initialState, action) => {
