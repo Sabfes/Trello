@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar/NavBar";
 import React from "react";
 import styled from "styled-components";
 import HomePage from "./components/HomePage/HomePage";
+import Boards from "./components/Boards/Boards";
 
 function App() {
     const isAuth = useSelector(state => state.user.isAuth)
@@ -20,6 +21,7 @@ function App() {
                             <Route path={"/"} exact component={HomePage} />
                             <Route path={"/registration"} exact component={Registration}/>
                             <Route path={"/login"} exact component={Login}/>
+                            <Route path={"/boards/:id"} exact component={Boards} />
                         </Switch>
                 }
             </Switch>
