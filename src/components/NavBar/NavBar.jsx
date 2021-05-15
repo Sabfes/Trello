@@ -2,14 +2,25 @@ import React from "react"
 import styled from "styled-components";
 import {NavLink} from "react-router-dom";
 import {Row} from "../StyledComponents/StyledComponents";
+import {useDispatch, useSelector} from "react-redux";
+import {authToggle} from "../../redux/actions/user";
 
 const NavBar = () => {
+    const dispatch = useDispatch()
+    const isAuth = useSelector(state => state.user.isAuth)
+
     return <Navbar>
         <Link to={"/"}><Logo>Trello</Logo></Link>
 
         <Row mr={30}>
-            <Link to={"/registration"}>Регистрация</Link>
-            <Link to={"/login"}>Логин</Link>
+            {
+                isAuth
+                    ?   <Link to={"/"} onClick={() => dispatch(authToggle(false))}>logout</Link>
+                    :   <>
+                        <Link to={"/registration"}>Регистрация</Link>
+                        <Link to={"/login"}>Логин</Link>
+                    </>
+            }
         </Row>
     </Navbar>
 }

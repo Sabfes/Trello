@@ -7,6 +7,7 @@ import React from "react";
 import styled from "styled-components";
 import HomePage from "./components/HomePage/HomePage";
 import Boards from "./components/Boards/Boards";
+import BoardList from "./components/BoardsList/BoardList";
 
 function App() {
     const isAuth = useSelector(state => state.user.isAuth)
@@ -16,12 +17,16 @@ function App() {
             <NavBar />
             <Switch>
                 {
-                    !isAuth &&
-                        <Switch>
+                    isAuth
+                        ?   <Switch>
+                            <Route path={"/boardsList"} exact component={BoardList} />
+                            <Route path={"/boards/:id"} exact component={Boards} />
                             <Route path={"/"} exact component={HomePage} />
+                        </Switch>
+                        :   <Switch>
                             <Route path={"/registration"} exact component={Registration}/>
                             <Route path={"/login"} exact component={Login}/>
-                            <Route path={"/boards/:id"} exact component={Boards} />
+                            <Route path={"/"} exact component={HomePage} />
                         </Switch>
                 }
             </Switch>

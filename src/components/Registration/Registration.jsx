@@ -4,9 +4,9 @@ import styled from 'styled-components'
 import axios from "axios";
 
 const Registration = () => {
-    const [login, setLogin] = useState()
-    const [password, setPassword] = useState()
-    const [email, setEmail] = useState()
+    const [login, setLogin] = useState('')
+    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('')
 
     const submit = (login, password, email) => {
         axios.post('https://sabfesapp.herokuapp.com/api/auth/signup', {

@@ -3,11 +3,14 @@ import {Button, Col, Input} from "../StyledComponents/StyledComponents";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import {useDispatch} from "react-redux";
+import {authToggle} from "../../redux/actions/user";
 
 const Login = () => {
+    const dispatch = useDispatch()
     const history = useHistory()
-    const [login, setLogin] = useState()
-    const [password, setPassword] = useState()
+    const [login, setLogin] = useState('')
+    const [password, setPassword] = useState('')
 
     const loginHandler = () => {
         axios.post('https://sabfesapp.herokuapp.com/api/auth/signin', {
@@ -15,9 +18,9 @@ const Login = () => {
             password: 'test',
         }).then(res => {
             if (res.status === 200) {
-                console.log(res)
                 localStorage.setItem('token', res.data.token)
-                history.push(`/boards/${res.data.id}`)
+                history.push(`/boardsList`)
+                dispatch(authToggle(true))
             }
         })
     }
