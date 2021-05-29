@@ -1,28 +1,23 @@
 import React, {useState} from "react"
 import {Button, Col, Input} from "../StyledComponents/StyledComponents";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
-import axios from "axios";
 import {useDispatch} from "react-redux";
-import {authToggle} from "../../redux/actions/user";
+import {loginMe} from "../../redux/actions/auth";
+import {useHistory} from "react-router-dom"
 
 const Login = () => {
-    const dispatch = useDispatch()
     const history = useHistory()
+    const dispatch = useDispatch()
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
 
     const loginHandler = () => {
-        axios.post('https://sabfesapp.herokuapp.com/api/auth/signin', {
-            username: 'test',
-            password: 'test',
-        }).then(res => {
-            if (res.status === 200) {
-                localStorage.setItem('token', res.data.token)
-                history.push(`/boardsList`)
-                dispatch(authToggle(true))
-            }
-        })
+        dispatch(loginMe(login, password))
+            .then( res => {
+                if (res) {
+                    history.push('/boardsList')
+                }
+            })
     }
 
     return <Wrap>

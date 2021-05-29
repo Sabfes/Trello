@@ -1,6 +1,12 @@
 import {combineReducers} from "redux";
-import {userReducer} from "./userReducer";
+import {boardsReducer} from "./boardsReducer";
+import {authReducer} from "./authReducer";
+import {curBoardReducer} from "./curBoardReducer";
+import {curTaskReducer} from "./curTaskReducer";
 
 export const rootReducer = combineReducers({
-    user: userReducer,
+    boards: boardsReducer,
+    auth: authReducer,
+    curBoard: curBoardReducer,
+    curTask: curTaskReducer,
 })

@@ -1,20 +1,19 @@
 import React, {useState} from "react"
 import {Button, Col, Input} from "../StyledComponents/StyledComponents";
 import styled from 'styled-components'
-import axios from "axios";
+import {useDispatch} from "react-redux";
+import {registrationMe} from "../../redux/actions/auth";
 
 const Registration = () => {
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
+    const dispatch = useDispatch()
 
     const submit = (login, password, email) => {
-        axios.post('https://sabfesapp.herokuapp.com/api/auth/signup', {
-            username: login,
-            email: email,
-            role: ['user'],
-            password: password,
-        }).then(res => console.log(res))
+        const role = ['user']
+
+        dispatch(registrationMe(login, password, email, role))
     }
 
     return <Wrap>

@@ -3,11 +3,11 @@ import styled from "styled-components";
 import {NavLink} from "react-router-dom";
 import {Row} from "../StyledComponents/StyledComponents";
 import {useDispatch, useSelector} from "react-redux";
-import {authToggle} from "../../redux/actions/user";
+import {authToggle} from "../../redux/actions/auth";
 
 const NavBar = () => {
     const dispatch = useDispatch()
-    const isAuth = useSelector(state => state.user.isAuth)
+    const isAuth = useSelector(state => state.auth.isAuth)
 
     return <Navbar>
         <Link to={"/"}><Logo>Trello</Logo></Link>
@@ -28,7 +28,7 @@ export default NavBar
 
 const Navbar = styled.div`
     display: flex;
-    height: 80px;
+    height: 5vh;
     align-items: center;   
     justify-content: space-between;
 `
