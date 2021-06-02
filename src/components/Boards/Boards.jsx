@@ -22,7 +22,7 @@ const Board = () => {
         dispatch(getCurrentBoard(boardId))
         setTimeout(() => {
             setIsLoading(false)
-        },1000)
+        },0)
     }, [])
     const board = useSelector(state => state.curBoard)
 
@@ -67,6 +67,7 @@ const Board = () => {
                             })}
                             {
                                 isInputOpen
+                                    // Инпути добавления новой колонки
                                     ?   <div style={{height: '50px'}}>
                                         <Input
                                             width={100}

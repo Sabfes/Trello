@@ -34,18 +34,20 @@ const BoardList = () => {
         </NavBar>
         <BoardsContainer>
             {
-                boards.map((board, i) => {
-                    return (
-                        <div key={i}>
-                            <span onClick={() => delBoardHandler(board.id)}>delete</span>
-                            <Link to={`/boards/${board.id}`}>
-                                <Board>
-                                    {board.boardName}
-                                </Board>
-                            </Link>
-                        </div>
-                    )
-                })
+                boards
+                    ? boards.map((board, i) => {
+                            return (
+                                <div key={i}>
+                                    <span onClick={() => delBoardHandler(board.id)}>delete</span>
+                                    <Link to={`/boards/${board.id}`}>
+                                        <Board>
+                                            {board.boardName}
+                                        </Board>
+                                    </Link>
+                                </div>
+                            )
+                        })
+                    : <div>Досок нету</div>
             }
         </BoardsContainer>
     </Container>
