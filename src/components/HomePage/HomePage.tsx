@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components";
 
-const HomePage = () => {
+const HomePage: React.FC = () => {
     return <Wrap>
         <Title>Trello</Title>
     </Wrap>

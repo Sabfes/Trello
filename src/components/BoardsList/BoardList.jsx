@@ -1,15 +1,16 @@
 import React, {useEffect, useState} from "react"
 import styled from "styled-components";
 import {NavLink} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {H2} from "../StyledComponents/StyledComponents";
 import Modal from "../Modal/Modal";
 import {addBoard, deleteBoard, getBoards} from "../../redux/actions/boards";
 import BoardSnippet from "./BoardSnippet/BoardSnippet";
+import {useTypedSelector} from "../../hooks/useTypedSelector";
 
 const BoardList = () => {
-    const userId = useSelector(state => state.auth.userId)
-    const boards = useSelector(state => state.boards.boards)
+    const userId = useTypedSelector(state => state.auth.userId)
+    const boards = useTypedSelector(state => state.boards.boards)
     const [isModalOpen, setModalOpen] = useState(false)
     const dispatch = useDispatch()
 
