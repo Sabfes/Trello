@@ -17,7 +17,7 @@ https://sabfes.github.io/Trello/
 Перед началом работы необходимо проверить наличие установленного node.js и npm
 Скопируйте проект на компьютер:
 ```
-git clone https://github.com/Sabfes/yandex-avtoru.git
+git clone https://github.com/Sabfes/Trello.git
 ```
 Установите зависимости:
 ```
