@@ -1,4 +1,4 @@
-import {boardsApi} from "../../api/boardsApi";
+// import {boardsApi} from "../../api/boardsApi";
 import {curBoardApi} from "../../api/curBoard";
 import uuid from "react-uuid";
 

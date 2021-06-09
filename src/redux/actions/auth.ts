@@ -1,19 +1,16 @@
 import {authApi} from "../../api/authApi";
+import {AuthActions, authActionsConstants, authToggleType, setUserIdType} from "../types/auth";
+import {Dispatch} from "redux";
 
 //ACTIONS
-export const authActionsConstants = {
-    IS_AUTH_TOGGLE: 'IS_AUTH_TOGGLE',
-    SET_USER_ID: 'SET_USER_ID',
-}
-
-export const authToggle = (isAuth) => {
+export const authToggle = (isAuth: boolean): authToggleType => {
     return {
         type: authActionsConstants.IS_AUTH_TOGGLE,
         payload: isAuth,
     }
 }
 
-export const setUserId = (id) => {
+export const setUserId = (id: number): setUserIdType => {
     return {
         type: authActionsConstants.SET_USER_ID,
         payload: id
@@ -21,7 +18,7 @@ export const setUserId = (id) => {
 }
 
 //THUNK
-export const authMe = () => async (dispatch) => {
+export const authMe = () => async (dispatch: Dispatch<AuthActions>) => {
     const res = await authApi.getAuth()
 
     if (res.status === 200) {
@@ -30,7 +27,7 @@ export const authMe = () => async (dispatch) => {
     }
 }
 
-export const loginMe = (userName, password) => async (dispatch) => {
+export const loginMe = (userName: string, password: string) => async (dispatch: Dispatch<AuthActions>) => {
     const res = await authApi.login(userName, password)
 
     if (res.status === 200) {
@@ -42,7 +39,7 @@ export const loginMe = (userName, password) => async (dispatch) => {
     }
 }
 
-export const registrationMe = (login, password, email, role) => async () => {
+export const registrationMe = (login: string, password: string, email: string, role: string[]) => async () => {
     try {
         const res = await authApi.registration(login, password, email, role)
 

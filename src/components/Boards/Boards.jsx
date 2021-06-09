@@ -5,9 +5,10 @@ import {onDragEnd} from "./onDragEnd";
 import Column from "./Column/Column";
 import styled from "styled-components";
 import {NavLink, useHistory} from 'react-router-dom'
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {addCol, addTaskToColumns, delCol, getCurrentBoard} from "../../redux/actions/curBoard";
 import {H2, Input} from "../StyledComponents/StyledComponents";
+import {useTypedSelector} from "../../hooks/useTypedSelector";
 
 
 const Board = () => {
@@ -23,8 +24,8 @@ const Board = () => {
         setTimeout(() => {
             setIsLoading(false)
         },0)
-    }, [])
-    const board = useSelector(state => state.curBoard)
+    }, [boardId, dispatch])
+    const board = useTypedSelector(state => state.curBoard)
 
     const addTaskHandler = (colId) => {
         dispatch(addTaskToColumns(colId))
@@ -70,7 +71,6 @@ const Board = () => {
                                     // Инпути добавления новой колонки
                                     ?   <div style={{height: '50px'}}>
                                         <Input
-                                            width={100}
                                             autoFocus
                                             onKeyPress={(e) => {
                                                 if (e.key === "Enter") {

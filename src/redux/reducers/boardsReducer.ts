@@ -1,10 +1,10 @@
-import {boardsActionsConstants} from "../actions/boards";
+import {BoardsActions, boardsActionsConstants, BoardsState} from "../types/board";
 
-const initialState = {
+const initialState: BoardsState = {
     boards: [],
 }
 
-export const boardsReducer = (state = initialState, action) => {
+export const boardsReducer = (state = initialState, action: BoardsActions): BoardsState => {
     switch (action.type) {
         case boardsActionsConstants.SET_BOARDS:
             return {
@@ -19,7 +19,7 @@ export const boardsReducer = (state = initialState, action) => {
         case boardsActionsConstants.DELETE_BOARD_FROM_STORE:
             return {
                 ...state,
-                boards: state.boards.filter(el => el.id !== action.payload)
+                boards: state.boards.filter(el => +el.id !== action.payload)
             }
         default:
             return state

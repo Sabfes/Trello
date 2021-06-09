@@ -1,4 +1,4 @@
-import {curTaskActionsConstants} from "../actions/auth";
+// import {curTaskActionsConstants} from "../actions/auth";
 
 const initialState = {
     taskInfo: []

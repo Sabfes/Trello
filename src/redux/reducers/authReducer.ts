@@ -1,11 +1,11 @@
-import {authActionsConstants} from "../actions/auth";
+import {AuthActions, authActionsConstants, AuthState} from "../types/auth"
 
-const initialState = {
+const initialState: AuthState = {
     isAuth: false,
     userId: null,
 }
 
-export const authReducer = (state = initialState, action) => {
+export const authReducer = (state = initialState, action: AuthActions): AuthState => {
     switch (action.type) {
         case authActionsConstants.SET_USER_ID:
             return {

@@ -1,28 +1,32 @@
 import {boardsApi} from "../../api/boardsApi";
+// @ts-ignore
 import uuid from "react-uuid";
-
-export const boardsActionsConstants = {
-    SET_BOARDS: 'SET_BOARDS',
-    ADD_BOARD_TO_STORE: 'ADD_BOARD_TO_STORE',
-    DELETE_BOARD_FROM_STORE: 'DELETE_BOARD_FROM_STORE',
-}
+import {
+    addBoardToStoreType,
+    BoardsActions,
+    boardsActionsConstants,
+    deleteBoardFromStoreType,
+    IBoard,
+    setBoardsType
+} from "../types/board";
+import {Dispatch} from "redux";
 
 //ACTIONS
-export const setBoards = (data) => {
+export const setBoards = (data: IBoard[]): setBoardsType => {
     return {
         type: boardsActionsConstants.SET_BOARDS,
         payload: data
     }
 }
 
-export const addBoardToStore = (board) => {
+export const addBoardToStore = (board: IBoard): addBoardToStoreType => {
     return {
         type: boardsActionsConstants.ADD_BOARD_TO_STORE,
         payload: board
     }
 }
 
-export const deleteBoardFromStore = (boardId) => {
+export const deleteBoardFromStore = (boardId: number): deleteBoardFromStoreType => {
     return {
         type: boardsActionsConstants.DELETE_BOARD_FROM_STORE,
         payload: boardId
@@ -30,11 +34,12 @@ export const deleteBoardFromStore = (boardId) => {
 }
 
 //THUNK
-export const getBoards = (userId) => async (dispatch) => {
+export const getBoards = (userId: number | null) => async (dispatch: Dispatch<BoardsActions>) => {
     try {
         const res = await boardsApi.getBoards(userId)
 
         if (res.status === 200) {
+            console.log(res.data)
             dispatch(setBoards(res.data))
         }
     } catch (e) {
@@ -42,7 +47,7 @@ export const getBoards = (userId) => async (dispatch) => {
     }
 }
 
-export const addBoard = (userId, nameOfBoard) => async (dispatch) => {
+export const addBoard = (userId: number, nameOfBoard: string) => async (dispatch: Dispatch<BoardsActions>) => {
     const board = {
         id: uuid(),
         boardName: nameOfBoard,
@@ -56,7 +61,7 @@ export const addBoard = (userId, nameOfBoard) => async (dispatch) => {
     }
 }
 
-export const deleteBoard = (boardId) => async (dispatch) => {
+export const deleteBoard = (boardId: number) => async (dispatch: Dispatch<BoardsActions>) => {
     const res = await boardsApi.delBoard(boardId)
 
     if (res.status === 200) {

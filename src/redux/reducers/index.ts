@@ -10,3 +10,5 @@ export const rootReducer = combineReducers({
     curBoard: curBoardReducer,
     curTask: curTaskReducer,
 })
+
+export type RootState = ReturnType<typeof rootReducer>
