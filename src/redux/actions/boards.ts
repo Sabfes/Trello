@@ -26,7 +26,7 @@ export const addBoardToStore = (board: IBoard): addBoardToStoreType => {
     }
 }
 
-export const deleteBoardFromStore = (boardId: number): deleteBoardFromStoreType => {
+export const deleteBoardFromStore = (boardId: string): deleteBoardFromStoreType => {
     return {
         type: boardsActionsConstants.DELETE_BOARD_FROM_STORE,
         payload: boardId
@@ -39,7 +39,6 @@ export const getBoards = (userId: number | null) => async (dispatch: Dispatch<Bo
         const res = await boardsApi.getBoards(userId)
 
         if (res.status === 200) {
-            console.log(res.data)
             dispatch(setBoards(res.data))
         }
     } catch (e) {
@@ -61,7 +60,7 @@ export const addBoard = (userId: number, nameOfBoard: string) => async (dispatch
     }
 }
 
-export const deleteBoard = (boardId: number) => async (dispatch: Dispatch<BoardsActions>) => {
+export const deleteBoard = (boardId: string) => async (dispatch: Dispatch<BoardsActions>) => {
     const res = await boardsApi.delBoard(boardId)
 
     if (res.status === 200) {

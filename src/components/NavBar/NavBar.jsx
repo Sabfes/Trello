@@ -12,10 +12,10 @@ const NavBar = () => {
     return <Navbar>
         <Link to={"/"}><Logo>Trello</Logo></Link>
 
-        <Row mr={30}>
+        <Row mr={10}>
             {
                 isAuth
-                    ?   <Link to={"/"} onClick={() => dispatch(authToggle(false))}>logout</Link>
+                    ?   <Link to={"/"} onClick={() => dispatch(authToggle(false))}>Выйти</Link>
                     :   <>
                         <Link to={"/registration"}>Регистрация</Link>
                         <Link to={"/login"}>Логин</Link>
@@ -48,6 +48,6 @@ const Link = styled(NavLink)`
 const Logo = styled.h1`
     font-size: 25px;
     font-weight: 300;
-    margin-left: 30px;
+    margin-left: 10px;
     cursor: pointer;
 `

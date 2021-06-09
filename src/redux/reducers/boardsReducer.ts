@@ -19,7 +19,7 @@ export const boardsReducer = (state = initialState, action: BoardsActions): Boar
         case boardsActionsConstants.DELETE_BOARD_FROM_STORE:
             return {
                 ...state,
-                boards: state.boards.filter(el => +el.id !== action.payload)
+                boards: state.boards.filter(el => el.id !== action.payload)
             }
         default:
             return state

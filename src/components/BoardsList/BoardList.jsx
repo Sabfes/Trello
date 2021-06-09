@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {H2} from "../StyledComponents/StyledComponents";
 import Modal from "../Modal/Modal";
 import {addBoard, deleteBoard, getBoards} from "../../redux/actions/boards";
+import BoardSnippet from "./BoardSnippet/BoardSnippet";
 
 const BoardList = () => {
     const userId = useSelector(state => state.auth.userId)
@@ -21,8 +22,10 @@ const BoardList = () => {
     }
 
     const addBoardHandler = (nameOfBoard) => {
-        dispatch(addBoard(userId, nameOfBoard))
-        setModalOpen(false)
+        if (nameOfBoard !== '') {
+            dispatch(addBoard(userId, nameOfBoard))
+            setModalOpen(false)
+        }
     }
 
     return <Container>
@@ -35,17 +38,12 @@ const BoardList = () => {
         <BoardsContainer>
             {
                 boards
-                    ? boards.map((board, i) => {
-                            return (
-                                <div key={i}>
-                                    <span onClick={() => delBoardHandler(board.id)}>delete</span>
-                                    <Link to={`/boards/${board.id}`}>
-                                        <Board>
-                                            {board.boardName}
-                                        </Board>
-                                    </Link>
-                                </div>
-                            )
+                    ? boards.map((board) => {
+                            return <BoardSnippet
+                                key={board.id}
+                                board={board}
+                                delBoardHandler={delBoardHandler}
+                            />
                         })
                     : <div>Досок нету</div>
             }
@@ -53,22 +51,6 @@ const BoardList = () => {
     </Container>
 }
 export default BoardList
-
-
-const Board = styled.div`
-    padding: 10px;
-    width: 200px;
-    color: grey;
-    height: 120px;
-    background: white;
-    border: 1px solid lightgrey;
-    border-radius: 20px;
-    transition: 1s;
-    
-    &:hover {
-        transform: scale(1.03);
-    }
-`
 
 const BoardsContainer = styled.div`
     display: grid;

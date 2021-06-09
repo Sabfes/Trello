@@ -1,11 +1,11 @@
-import {curBoardActionsConstants} from "../actions/curBoard";
+import {CurBoardActions, curBoardActionsConstants, CurBoardState} from "../types/curBoard";
 
-const initialState = {
+const initialState: CurBoardState = {
     columns: [],
     boardName: ''
 }
 
-export const curBoardReducer = (state = initialState, action) => {
+export const curBoardReducer = (state = initialState, action: CurBoardActions): CurBoardState => {
     switch (action.type) {
         case curBoardActionsConstants.DELL_TASK:
             const newColsAfterDel = state.columns.map(el => {

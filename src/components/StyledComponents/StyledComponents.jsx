@@ -24,13 +24,13 @@ export const Col = styled.div`
 `
 
 export const Input = styled.input`
-    height: 50px;
     border: 1px solid grey;
     padding: 10px;
     outline: none;
     color: grey;
     font-weight: 300;
     font-size: 15px;
+    height: ${({height}) => height ? height + 'px' : '50px'};
     width: ${({width}) => width ? width + 'px' : '300px'};
 `
 
@@ -57,7 +57,7 @@ export const H2 = styled.h2`
     font-weight: 300;
     font-size: 20px;
     color: black;
-    cursor: ${({pointer}) => pointer ? 'pointer' : 'none'};
+    cursor: ${({pointer}) => pointer ? 'pointer' : 'default'};
     
     margin-top: ${({mt}) => mt ? mt + 'px' : '0px' };
     margin-left: ${({ml}) => ml ? ml + 'px' : '0px' };

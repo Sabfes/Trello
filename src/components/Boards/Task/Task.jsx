@@ -23,12 +23,10 @@ const Task = ({item, index,colId}) => {
                             width: '100%',
                             userSelect: "none",
                             padding: 16,
-                            margin: "8px 0 0 0",
+                            margin: "0 0 8px 0",
                             minHeight: "50px",
-                            backgroundColor: snapshot.isDragging
-                                ? "#263B4A"
-                                : "#456C86",
-                            color: "white",
+                            backgroundColor: "white",
+                            color: "black",
                             ...provided.draggableProps.style
                         }}
                     >

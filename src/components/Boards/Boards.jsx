@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { DragDropContext } from "react-beautiful-dnd";
+import {DragDropContext} from "react-beautiful-dnd";
 import uuid from "react-uuid";
 import {onDragEnd} from "./onDragEnd";
 import Column from "./Column/Column";
@@ -23,16 +23,16 @@ const Board = () => {
         dispatch(getCurrentBoard(boardId))
         setTimeout(() => {
             setIsLoading(false)
-        },0)
+        }, 500)
     }, [boardId, dispatch])
     const board = useTypedSelector(state => state.curBoard)
 
-    const addTaskHandler = (colId) => {
-        dispatch(addTaskToColumns(colId))
+    const addTaskHandler = (colId, taskText) => {
+        dispatch(addTaskToColumns(colId, taskText))
     }
 
     const delColHandler = (colId) => {
-        dispatch(delCol(boardId,colId))
+        dispatch(delCol(boardId, colId))
     }
     const addColHandler = (columnName) => {
         const col = {
@@ -40,15 +40,17 @@ const Board = () => {
             columnName: columnName,
             tasks: []
         }
-        dispatch(addCol(boardId, col))
+        if (columnName !== '') {
+            dispatch(addCol(boardId, col))
+        }
     }
     return (
         <>
             <Header>
-                <H2 pointer ml={30} mr={15}>{board.boardName}</H2>
-                <H2><NavLink className="link" to={"/boardsList"}>Список досок</NavLink></H2>
-                <H2 pointer ml={15}>Добавить в избраное</H2>
-                <H2 pointer ml={915}>Настройки</H2>
+                <H2 ml={10} mr={15}>{board.boardName}</H2>
+                <NavLink className="link" to={"/boardsList"}><H2 pointer mr={15}>Список досок</H2></NavLink>
+                <H2 mr={15}>Добавить в избраное</H2>
+                <H2>Настройки</H2>
             </Header>
             {
                 isLoading
@@ -68,35 +70,36 @@ const Board = () => {
                             })}
                             {
                                 isInputOpen
-                                    // Инпути добавления новой колонки
-                                    ?   <div style={{height: '50px'}}>
-                                        <Input
-                                            autoFocus
-                                            onKeyPress={(e) => {
-                                                if (e.key === "Enter") {
-                                                    addColHandler(columnName.trim())
-                                                    setColumnName('')
-                                                    setIsInputOpen(false)
-                                                }
-                                            }}
-                                            onBlur={() => {
-                                                if (columnName === '') {
-                                                    setIsInputOpen(false)
-                                                } else {
-                                                    addColHandler(columnName.trim())
-                                                    setColumnName('')
-                                                    setIsInputOpen(false)
-                                                }
-                                            }}
-                                            width={'100px'}
-                                            height={"50px"}
-                                            value={columnName}
-                                            onChange={(e) => setColumnName(e.target.value)}
-                                        />
-                                    </div>
+                                    // Инпуты добавления новой колонки
+                                    ? <Input
+                                        placeholder="Введите название колонки"
+                                        autoFocus
+                                        onKeyPress={(e) => {
+                                            if (e.key === "Enter") {
+                                                addColHandler(columnName.trim())
+                                                setColumnName('')
+                                                setIsInputOpen(false)
+                                            }
+                                        }}
+                                        onBlur={() => {
+                                            if (columnName === '') {
+                                                setIsInputOpen(false)
+                                            } else {
+                                                addColHandler(columnName.trim())
+                                                setColumnName('')
+                                                setIsInputOpen(false)
+                                            }
+                                        }}
+                                        width={250}
+                                        height={50}
+                                        value={columnName}
+                                        onChange={(e) => setColumnName(e.target.value)}
+                                    />
                                     : <AddColBtn
                                         onClick={() => setIsInputOpen(true)}
-                                    >+</AddColBtn>
+                                    >
+                                        Добавить новую колонку +
+                                    </AddColBtn>
 
                             }
                         </DragDropContext>
@@ -110,27 +113,40 @@ export default Board;
 const Header = styled.header`
     height: 5vh;
     display: flex;
+    
 `
 
 const AddColBtn = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 30px;
-    height: 30px;
-    border-radius: 100px;
+    min-width: 250px;
+    height: 50px;
+    border-radius: 1px;
     color: black;
-    background: lightgrey;
+    background: #EBECF0;
     cursor: pointer;
 `
 
 const BoardContainer = styled.div`
-   display: flex; 
-   justifyContent: flex-start;
-   height: 90vh;
-   overflow-x: scroll;
-   
-   ::-webkit-scrollbar {
-    height: 1px;     
-   }
+    display: flex; 
+    justifyContent: flex-start;
+    height: 90vh;
+    overflow-x: scroll;
+    
+    ::-webkit-scrollbar {
+        width: 24px; /* ширина для вертикального скролла */
+        height: 10px; /* высота для горизонтального скролла */
+        background: #DCDCDC;
+    }
+    
+    /* ползунок скроллбара */
+    ::-webkit-scrollbar-thumb {
+        background-color: darkgrey;
+        border-radius: 9em;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: grey;
+    }
 `

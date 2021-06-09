@@ -37,7 +37,7 @@ export interface addBoardToStoreType {
 
 export interface deleteBoardFromStoreType {
     type: boardsActionsConstants.DELETE_BOARD_FROM_STORE,
-    payload: number
+    payload: string
 }
 
 export type BoardsActions = deleteBoardFromStoreType | addBoardToStoreType | setBoardsType
