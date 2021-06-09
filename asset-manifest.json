@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/Trello/static/css/main.16d3dc8e.chunk.css",
-    "main.js": "/Trello/static/js/main.6c48fe6c.chunk.js",
-    "main.js.map": "/Trello/static/js/main.6c48fe6c.chunk.js.map",
+    "main.js": "/Trello/static/js/main.b1647f43.chunk.js",
+    "main.js.map": "/Trello/static/js/main.b1647f43.chunk.js.map",
     "runtime-main.js": "/Trello/static/js/runtime-main.aa994d70.js",
     "runtime-main.js.map": "/Trello/static/js/runtime-main.aa994d70.js.map",
-    "static/js/2.0f3c0b90.chunk.js": "/Trello/static/js/2.0f3c0b90.chunk.js",
-    "static/js/2.0f3c0b90.chunk.js.map": "/Trello/static/js/2.0f3c0b90.chunk.js.map",
+    "static/js/2.4668e3e0.chunk.js": "/Trello/static/js/2.4668e3e0.chunk.js",
+    "static/js/2.4668e3e0.chunk.js.map": "/Trello/static/js/2.4668e3e0.chunk.js.map",
     "index.html": "/Trello/index.html",
     "static/css/main.16d3dc8e.chunk.css.map": "/Trello/static/css/main.16d3dc8e.chunk.css.map",
-    "static/js/2.0f3c0b90.chunk.js.LICENSE.txt": "/Trello/static/js/2.0f3c0b90.chunk.js.LICENSE.txt"
+    "static/js/2.4668e3e0.chunk.js.LICENSE.txt": "/Trello/static/js/2.4668e3e0.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.aa994d70.js",
-    "static/js/2.0f3c0b90.chunk.js",
+    "static/js/2.4668e3e0.chunk.js",
     "static/css/main.16d3dc8e.chunk.css",
-    "static/js/main.6c48fe6c.chunk.js"
+    "static/js/main.b1647f43.chunk.js"
   ]
 }
